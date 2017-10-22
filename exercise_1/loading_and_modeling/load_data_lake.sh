@@ -7,6 +7,9 @@ MY_CWD=$(pwd)
 mkdir ~/staging
 mkdir ~/staging/exercise_1
 
+# change to staging directory
+cd ~/staging/exercise_1
+
 # downloading zip file from data.medicare.gov
 MY_URL="https://data.medicare.gov/views/bg9k-emty/files/4a66c672-a92a-4ced-82a2-033c28581a90?content_type=application%2Fzip%3B%20charset%3Dbinary&filename=Hospital_Revised_Flatfiles.zip"
 wget "$MY_URL" -O medicare_data.zip
