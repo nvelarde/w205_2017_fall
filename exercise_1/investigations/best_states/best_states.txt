@@ -1,0 +1,5 @@
+Question 2:
+
+Which states are models of high quality care?
+
+To answer this question, I simply ran modified the Question 1 query to group the hospital quality scores (methodology discussed in Question 1) by state and idetified the states with the largest average scores.  Small states make up the vast majority of the Top 10.  There may be due to (a) easier to get better medical outcomes in mostly rural areas or following a point made in Question 1, a minimum number of hospitals threshold should have been set in order for a state to get a ranking.  A small number of well-run hospitals in a rural state may be skewing the results in favor those states.  So, despite what the states ranking states, it may be premature to call these states model of quality of care until we have more time to parse through the data -- i.e, taking into account the nunber of hosptials in a state and adjust the state average accordingly.

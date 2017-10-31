@@ -1,0 +1,9 @@
+Question 4:
+
+Are average scores for hospital quality or procedural variability correlated with patient survey responses?
+
+The short answer is No.  I approached this question very literally, calculating the correlation coefficient between the hospital overall rating (as a broad measure of quality) and a total score for survey responses (equal to hcahps_base_score, which ranges from 0 to 80 and hcahps_consistency_score which ranges from 0 to 20 - adding the two together gives the total_score).  The correlation came out to be 0.55 which is weak.
+
+Unfortunately, I could not get a query to work correctly to test whether or not procedural variability was correlated with patient survey responses and ran out of time.  Even though I think I have the query set up right using a JOIN on provider_id, I keep getting a "cannot resolve 'my_results.provider_id' given input columns type" issue.  Any help on this would be appreciated for future reference - there seems to be a type issue when using provider_id from the survey_responses table that I have not been able to crack.
+
+ 

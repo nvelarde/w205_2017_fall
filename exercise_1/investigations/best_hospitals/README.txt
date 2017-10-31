@@ -1,0 +1,1 @@
+This directory holds a .sql file that contains queries to answer Exercise Question 1.  This file can be executed using source /path/to/file.sql;  This direcotry also contains a .txt file which walks through the reasoning and assumptions behind the query design.

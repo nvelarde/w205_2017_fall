@@ -1,0 +1,7 @@
+Question 3:
+
+Which procedures have the greatest variability between hospitals?
+
+As mentioned before, variability is the enemy of quality.  To answer this question, I combined the "readmissions" and "effective_care" using a UNION query.  While the prcedures/measures in both tables were quite different, using the numeric "score" provided in each table, one could calculate the coefficient of variation for each procedure/measure.  Again due to the limitations of the data dictionary, it was hard to decipher how to interpret the scores - is higher better, or is lower better.  Fortunately, the question is not what hospitals or which procedures have the best (highest) scores, the question is what procedures have the most variability between hosptials.  Given that the coefficient of variation is a normalized measure of variation (by the respective procedure mean) it is a natural metric to use to answer this question.  It renders the question of is higher or lower better, irrelevant.
+
+From looking at the Top 10 procedures/measures with the greatest variability, it is striking to see the greatest variation in very preventable conditions like hospital acquired venous thrombosis, medically unnecessary induced births and pressure sores.  From a Deming perspective, if you are consistently good at the mundane, "hygiene"-type tasks, the better your overall results will be.  The three examples cited above do not require a medical degree to fix, just a consistent adherence to procedures to prevent these conditions from causing serious harm to patients.

@@ -1,0 +1,29 @@
+Question 1:
+
+What hospitals are models of high-quality care?  That is, which hospitals have the most consistently high scores for a variety of procedures?
+
+Edward Deming, the godfather of quality gurus defined "quality" as follows: "Good quality means a predictable degree of uniformity and dependability with a quality standard suited to the customer. The underlying philosophy of all definitions is the same – consistency of conformance and performance, and keeping the customer in mind.  Deming is most famously associated with his work with the automobile industry, but his definition serves as the basis of how I approached coming up with a quality measure.
+
+From Deming's perspective the biggest hit to quality came from "rework" - fixing or preventing problems the first time.  At its quality nadir, Detroit plants had two assembly lines, the main line and the sub-line dedicated to fixing quality issues before the cars left the plant (at great cost).  The analogy to hospitals and what is "quality" medical care is complications.  As customers/patients, the last thing we want is to head back to the hospital due to complications from a botched procedure or hospital-acquired infections.  For a variety of procedures, the "quality" hospital should perform better than the national average on most measures (where data is available) and the variability across procedures should be low.
+
+The Medicare dataset we were provided with had a large number of measures that could have served in isolation, or in combination, as good quality proxies.  In my approach, I decided to go for simiplicity in using two measures - a broad quality measure that captures performance on a broad spectrum of chracteristics and a measure focused on procedure outcomes adjusted for variability.  Keeping with the spirit of Deming, consistency is essential for quality and variability at all steps in a process/outcomes is to be avoided, hence the motivation for adding a variability component to my quality measure.
+
+The broad quality measure used comes from the hospitals table -- "hospital overall rating".  This is a general quality score that ranges from 1 (lowest) to 5 (highest).  The score summarizes relative (to the national average) performance on: mortality, safety of care, readmission, patient experience, effectiveness of care, timeliness of care and efficient use of medical imaging.  While the dataset was rich in terms of the sheer number of potential measures, its data dictionay was quite poor in helping to decipher exactly what these measures actually measured and the scale upon which hospitals should be judged.  Hence, I decided to use the broadest measure of qualilty as the first component in my quality measure.
+
+The second component is derived from the "compared_to_national" field in the "readmissions" table.  A numeric "procedure" score was available (and a corresponding statistics for the sample size of the procedure in question) as well the time period over which the procedure was judged.  However, due to the limitations of the data dictionary and my own lack of domain knowledge, it was difficult to discern what made a good score.  Hence, I gravitated to the "compared to national" field, which sumarizes procedure performance as Better, Equal to, Worse than the national average or Not Available/Not Enough Data.  I converted these text categories to a numeric score ranging from 1 (below average), 2 (average) to 3 (above average).  I then divided average of the "compared_to_national" scores received by the hospital by the standard deviation of these "compared_to_national" scores to scale the measure for variability.  Given the "compared_to_national" field was relative to the national average, in effect, by dividing my measure was a rough z-score for the procedure performed at a particular hospital relative to pertinent national average.
+
+In summary, my quality measure is the hospital overal rating (from the hospitals table) plus the hospital average of my simplisitc procedure z-scores.
+
+If given more time (and skill writing SQL queries), one area of research I would have like to pursue is to adjust the hospital procedure metrics for number of procedures performed (the denominator field) or the length of the measurement period -- give a greater weight to the scores for hospitals that performed more procedures or more heavily weight the procedures whose measurement time was longer.  Whatever the weighting method (number of procedures in the sample or measurement period in terms of days or months), I would have liked to apply it to the measures used in the other questions of this exercise. 
+
+There is one tactical note I would like highlight.  In transforming the raw data, I decided to exclude NA's.  This resulted in a meaningful number of records excluded, but it tended to limit the hospitals evaluated to those with multiple procedures to evaluate thereby minimizing (but not eliminating) the influence of hospitals with high scores on a small number of procedures relative to the broader population of hospitals.  Nevertheless, one refinement I would have liked to make was to put in a minimum number of procedures (with data) in order for the hospital to qualify for a score.
+
+From the results, the one qualitative thing that jumped out was that none of the Top 10 hospitals were privately owned.  All 10 were non-profits and/or government run.  Every member of the Top 10 was a "5-star" rated hospital per Medicare.  The differentiating factor was the second component, but even this was a blunt measurement tool (perhaps due to only working with a 3 point scale) as most of the Top 10 had the same combined score.
+
+You can see the Top 10 hospitals on my quality metric by running the "best_hospitals.sql" file in this directory.  Remember to include the correct path to run the file via the "source" or "hive f-"" methods.
+
+
+
+
+
+

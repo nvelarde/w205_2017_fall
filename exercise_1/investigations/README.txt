@@ -1,0 +1,1 @@
+This directory contains subdirectories which house .sql querries that will utilize the tables transformed from the raw data to answer the exercise questions.  best_hospitals will answer Question 1, best_states, Question 2, hospital_variability, Question 3 and hospitals_and_patients, Question 4.  The subdirectories also house .txt files which discuss the answers in detail.
